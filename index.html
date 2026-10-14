@@ -56,7 +56,7 @@
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 0 25px 40px; }
         .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; border: 1px solid #f0f0f0; }
         .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25); border-color: #d4af37; }
-        .product-card .image-wrapper { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f0f0f0; }
+        .product-card .image-wrapper { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f0f0f0; cursor: zoom-in; }
         .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .product-card:hover img { transform: scale(1.1); }
         .product-info { padding: 18px; }
@@ -64,7 +64,6 @@
         .product-info p { color: #888; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.5; height: 40px; overflow: hidden; }
         .product-price { font-size: 1.3rem; font-weight: 900; color: #d4af37; margin-bottom: 12px; }
         
-        /* أزرار الشراء */
         .product-buttons { display: flex; gap: 8px; }
         .buy-btn { flex: 1; padding: 11px 8px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; border: 2px solid #d4af37; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .buy-btn:hover { background: linear-gradient(135deg, #d4af37, #f4d03f); color: #0a0a0a; }
@@ -74,7 +73,6 @@
         .buy-now-btn:hover { background: linear-gradient(135deg, #059669, #047857); }
         .buy-now-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
 
-        /* معرض الصور */
         .gallery-thumbs { display: flex; gap: 5px; padding: 8px; background: #f9f9f9; overflow-x: auto; }
         .gallery-thumbs::-webkit-scrollbar { height: 4px; }
         .gallery-thumbs img { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; flex-shrink: 0; }
@@ -85,6 +83,75 @@
         .status-available { background: linear-gradient(135deg, #10b981, #059669); }
         .status-limited { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .status-out { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            animation: zoomIn 0.3s ease;
+        }
+        .lightbox .close-lightbox {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            z-index: 100000;
+        }
+        .lightbox .close-lightbox:hover { background: #f4d03f; transform: scale(1.1); }
+        .lightbox .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.8);
+            color: #0a0a0a;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            font-weight: 900;
+            transition: 0.3s;
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox .nav-btn:hover { background: #d4af37; transform: translateY(-50%) scale(1.1); }
+        .lightbox .nav-prev { right: 20px; }
+        .lightbox .nav-next { left: 20px; }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
 
         .loading, .no-products { text-align: center; padding: 60px 20px; color: #999; font-size: 1.1rem; grid-column: 1 / -1; }
         footer { background: #0a0a0a; color: #d4af37; text-align: center; padding: 25px; margin-top: 40px; border-top: 2px solid #d4af37; }
@@ -159,6 +226,14 @@
         .edit-btn { background: rgba(212, 175, 55, 0.2); color: #d4af37; }
         .delete-btn { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
 
+        /* جدول الزوار المفصل */
+        .visits-table { background: #0f0f0f; border: 1px solid #333; border-radius: 15px; overflow: hidden; max-height: 400px; overflow-y: auto; margin-bottom: 25px; }
+        .visit-row { display: grid; grid-template-columns: 60px 1fr 1fr; gap: 12px; padding: 12px 15px; align-items: center; border-bottom: 1px solid #222; color: #cbd5e1; font-size: 0.9rem; }
+        .visit-row:last-child { border-bottom: none; }
+        .visit-row .visit-num { color: #d4af37; font-weight: 700; }
+        .visit-row .visit-date { color: #f5f5f5; font-weight: 600; }
+        .visit-row .visit-time { color: #94a3b8; }
+
         .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
         .admin-modal.active { display: flex; }
         .admin-modal-content { background: linear-gradient(135deg, #1a1a1a, #0f0f0f); border: 1px solid #d4af37; border-radius: 20px; padding: 30px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; }
@@ -168,7 +243,6 @@
         .admin-modal-content textarea { resize: vertical; min-height: 70px; }
         .admin-modal-content select option { background: #1a1a1a; }
         
-        /* معاينة الصور في لوحة المدير */
         .images-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
         .images-preview .img-wrapper { position: relative; }
         .images-preview img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 2px solid #d4af37; }
@@ -183,6 +257,9 @@
             .product-row-admin { grid-template-columns: 45px 1fr; gap: 8px; }
             .product-buttons { flex-direction: column; }
             .buy-btn, .buy-now-btn { font-size: 0.8rem; padding: 9px 6px; }
+            .visit-row { grid-template-columns: 50px 1fr; font-size: 0.8rem; }
+            .visit-row .visit-time { grid-column: 1 / -1; }
+            .lightbox .nav-btn { width: 45px; height: 45px; font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -270,6 +347,11 @@
             </div>
         </div>
 
+        <h2 class="section-title-admin">⏰ سجل دخول الزوار (آخر 50 زيارة)</h2>
+        <div class="visits-table" id="visits-table">
+            <div style="text-align:center;padding:30px;color:#888;">جاري التحميل...</div>
+        </div>
+
         <h2 class="section-title-admin">📦 إدارة المنتجات</h2>
         <div class="products-table-admin" id="products-table-admin"></div>
     </div>
@@ -354,6 +436,14 @@
         </div>
     </div>
 
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="if(event.target === this) closeLightbox()">
+        <button class="close-lightbox" onclick="closeLightbox()">✕</button>
+        <button class="nav-btn nav-prev" onclick="navigateLightbox(-1)">‹</button>
+        <img id="lightbox-img" src="" alt="">
+        <button class="nav-btn nav-next" onclick="navigateLightbox(1)">›</button>
+    </div>
+
     <!-- WHATSAPP FLOATING -->
     <a href="https://wa.me/212647292888?text=مرحباً، أريد الاستفسار عن منتج" target="_blank" class="whatsapp-btn">
         <svg viewBox="0 0 32 32" width="30" height="30" fill="white">
@@ -372,7 +462,9 @@
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         let allProducts = [];
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        let currentImages = []; // الصور الحالية للمنتج الجاري تعديله
+        let currentImages = [];
+        let lightboxImages = [];
+        let lightboxIndex = 0;
 
         // ========== ROUTING ==========
         function handleRouting() {
@@ -427,6 +519,7 @@
             document.getElementById('stat-value').textContent = total;
 
             await loadVisitorsStats();
+            await loadVisitsLog();
         }
 
         async function loadVisitorsStats() {
@@ -445,6 +538,44 @@
                 document.getElementById('stat-visitors-total').textContent = totalVisitors;
             } catch (e) {
                 console.error('خطأ في جلب الزوار:', e);
+            }
+        }
+
+        async function loadVisitsLog() {
+            const container = document.getElementById('visits-table');
+            try {
+                const { data, error } = await supabaseClient
+                    .from('visits_log')
+                    .select('*')
+                    .order('visited_at', { ascending: false })
+                    .limit(50);
+
+                if (error) throw error;
+
+                if (!data || data.length === 0) {
+                    container.innerHTML = '<div style="text-align:center;padding:30px;color:#888;">📭 لا توجد زيارات مسجلة بعد</div>';
+                    return;
+                }
+
+                container.innerHTML = data.map((visit, i) => {
+                    const date = new Date(visit.visited_at);
+                    const dateStr = date.toLocaleDateString('ar-MA', { 
+                        year: 'numeric', month: '2-digit', day: '2-digit' 
+                    });
+                    const timeStr = date.toLocaleTimeString('ar-MA', { 
+                        hour: '2-digit', minute: '2-digit', second: '2-digit' 
+                    });
+                    return `
+                        <div class="visit-row">
+                            <div class="visit-num">#${data.length - i}</div>
+                            <div class="visit-date">📅 ${dateStr}</div>
+                            <div class="visit-time">🕐 ${timeStr}</div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (e) {
+                console.error('خطأ في جلب السجل:', e);
+                container.innerHTML = '<div style="text-align:center;padding:30px;color:#ef4444;">⚠️ حدث خطأ في تحميل السجل</div>';
             }
         }
 
@@ -496,7 +627,6 @@
             document.getElementById('p-category').value = p.category || 'عام';
             document.getElementById('p-status').value = p.status || 'متوفر';
 
-            // جمع كل الصور (الأولى + images)
             currentImages = [];
             if (p.image_url) currentImages.push(p.image_url);
             if (p.images && Array.isArray(p.images)) {
@@ -537,7 +667,6 @@
             const files = Array.from(event.target.files);
             if (files.length === 0) return;
 
-            // عرض مؤشر التحميل
             document.getElementById('images-preview').innerHTML += '<p style="color:#d4af37;font-size:0.85rem;">⏳ جاري رفع الصور...</p>';
 
             for (const file of files) {
@@ -560,7 +689,6 @@
                 }
             }
 
-            // تحديث الرابط الرئيسي (أول صورة)
             if (currentImages.length > 0) {
                 document.getElementById('p-image').value = currentImages[0];
             }
@@ -577,9 +705,7 @@
             const category = document.getElementById('p-category').value;
             const status = document.getElementById('p-status').value;
             
-            // الصورة الأولى (للتوافق مع الكود القديم)
             const image_url = currentImages.length > 0 ? currentImages[0] : null;
-            // كل الصور
             const images = currentImages;
 
             if (!name || !price) { alert('⚠️ الرجاء إدخال الاسم والسعر'); return; }
@@ -650,7 +776,6 @@
                     buyNowText = 'غير متوفر';
                 }
 
-                // معرض الصور المصغرة
                 const allImages = [p.image_url, ...(Array.isArray(p.images) ? p.images : [])]
                     .filter((v, i, arr) => v && arr.indexOf(v) === i);
                 
@@ -663,9 +788,9 @@
                 ` : '';
 
                 return `
-                <div class="product-card">
-                    <div class="image-wrapper">
-                        <img src="${mainImage}" alt="${p.name}" id="main-img-${p.id}">
+                <div class="product-card" data-images='${JSON.stringify(allImages).replace(/'/g, "&apos;")}'>
+                    <div class="image-wrapper" onclick="openLightboxFromProduct(this)">
+                        <img src="${mainImage}" alt="${p.name}">
                         <span class="status-badge ${statusClass}">${statusBadge}</span>
                     </div>
                     ${galleryHTML}
@@ -690,6 +815,63 @@
             parent.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
         }
+
+        // ========== LIGHTBOX ==========
+        function openLightboxFromProduct(wrapper) {
+            const card = wrapper.closest('.product-card');
+            const imagesAttr = card.getAttribute('data-images');
+            try {
+                lightboxImages = JSON.parse(imagesAttr);
+            } catch (e) {
+                lightboxImages = [];
+            }
+            
+            if (lightboxImages.length === 0) return;
+            
+            // الصورة الحالية هي التي تظهر في الصورة الرئيسية
+            const currentImg = wrapper.querySelector('img').src;
+            lightboxIndex = lightboxImages.findIndex(img => currentImg.includes(img) || img.includes(currentImg));
+            if (lightboxIndex < 0) lightboxIndex = 0;
+            
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function updateLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.src = lightboxImages[lightboxIndex];
+            
+            // إظهار أو إخفاء أزرار التنقل
+            const prevBtn = document.querySelector('.nav-prev');
+            const nextBtn = document.querySelector('.nav-next');
+            
+            if (lightboxImages.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            }
+        }
+
+        function navigateLightbox(dir) {
+            lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+            updateLightbox();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // إغلاق الـ Lightbox بالضغط على ESC أو الأسهم
+        document.addEventListener('keydown', (e) => {
+            const lb = document.getElementById('lightbox');
+            if (!lb.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
 
         function searchProducts() {
             const term = document.getElementById('search-input').value.toLowerCase();
@@ -720,7 +902,6 @@
             alert('✅ تمت الإضافة إلى السلة');
         }
 
-        // ========== BUY NOW ==========
         function buyNow(productId) {
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
@@ -729,14 +910,12 @@
                 return;
             }
             
-            // إضافة المنتج للسلة
             const existing = cart.find(item => item.id === productId);
             if (existing) existing.qty += 1;
             else cart.push({ ...product, qty: 1 });
             saveCart();
             updateCartUI();
             
-            // فتح نموذج إتمام الطلب مباشرة
             document.getElementById('checkout-modal').classList.add('active');
         }
 
@@ -810,6 +989,7 @@
             const today = new Date().toISOString().split('T')[0];
 
             try {
+                // 1. تسجيل في جدول visitors (العدد اليومي)
                 const { data: existing } = await supabaseClient
                     .from('visitors')
                     .select('*')
@@ -826,6 +1006,13 @@
                         .from('visitors')
                         .insert([{ visit_date: today, count: 1 }]);
                 }
+
+                // 2. تسجيل تفصيلي في visits_log (مع الوقت)
+                await supabaseClient
+                    .from('visits_log')
+                    .insert([{
+                        user_agent: navigator.userAgent.substring(0, 100)
+                    }]);
             } catch (e) {
                 console.error('خطأ في تسجيل الزيارة:', e);
             }
