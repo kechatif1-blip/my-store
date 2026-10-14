@@ -12,6 +12,7 @@
         #store-view { display: block; }
         #store-view.hidden { display: none; }
 
+        /* HEADER */
         .header {
             background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
             padding: 15px 25px;
@@ -37,6 +38,7 @@
         }
         .cart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); }
 
+        /* HERO */
         .hero { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a1a 100%); padding: 60px 25px; text-align: center; color: #f5f5f5; position: relative; overflow: hidden; }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 70%); pointer-events: none; }
         .hero h1 { font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; background: linear-gradient(135deg, #d4af37, #f4d03f, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; }
@@ -46,11 +48,13 @@
         .search-box input::placeholder { color: #888; }
         .search-box::after { content: '🔍'; position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; }
 
+        /* CATEGORIES */
         .categories { padding: 20px 25px; display: flex; gap: 10px; overflow-x: auto; background: white; border-bottom: 1px solid #eee; }
         .categories::-webkit-scrollbar { display: none; }
         .category-btn { padding: 10px 22px; background: #f5f5f5; border: 2px solid transparent; border-radius: 25px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600; color: #555; cursor: pointer; white-space: nowrap; transition: 0.3s; }
         .category-btn:hover, .category-btn.active { background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; border-color: #d4af37; transform: translateY(-2px); }
 
+        /* PRODUCTS */
         .section-title { padding: 30px 25px 15px; font-size: 1.4rem; font-weight: 900; color: #0a0a0a; display: flex; align-items: center; gap: 10px; }
         .section-title::before { content: ''; width: 5px; height: 25px; background: linear-gradient(135deg, #d4af37, #f4d03f); border-radius: 5px; }
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 0 25px 40px; }
@@ -76,6 +80,7 @@
         footer { background: #0a0a0a; color: #d4af37; text-align: center; padding: 25px; margin-top: 40px; border-top: 2px solid #d4af37; }
         footer p { font-size: 0.9rem; }
 
+        /* CART */
         .cart-sidebar { position: fixed; top: 0; left: -400px; width: 380px; max-width: 90%; height: 100%; background: white; box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3); z-index: 1001; transition: 0.4s; display: flex; flex-direction: column; }
         .cart-sidebar.open { left: 0; }
         .cart-header { padding: 20px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #d4af37; }
@@ -93,33 +98,15 @@
         .cart-total .amount { color: #d4af37; }
         .checkout-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #d4af37, #f4d03f); color: #0a0a0a; border: none; border-radius: 12px; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1.05rem; cursor: pointer; transition: 0.3s; }
         .checkout-btn:hover { transform: scale(1.02); }
-
-        .whatsapp-cart-btn {
-            display: flex; align-items: center; justify-content: center;
-            gap: 10px; width: 100%; margin-top: 12px; padding: 13px 20px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white !important; border-radius: 12px; text-decoration: none !important;
-            font-weight: 700; font-family: 'Cairo', sans-serif;
-            font-size: 0.95rem; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-            transition: 0.3s;
-        }
+        .whatsapp-cart-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 12px; padding: 13px 20px; background: linear-gradient(135deg, #25D366, #128C7E); color: white !important; border-radius: 12px; text-decoration: none !important; font-weight: 700; font-family: 'Cairo', sans-serif; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); transition: 0.3s; }
         .whatsapp-cart-btn:hover { transform: translateY(-2px); }
-
         .empty-cart { text-align: center; padding: 40px 20px; color: #999; }
 
-        .whatsapp-btn {
-            position: fixed !important; bottom: 30px !important; left: 30px !important;
-            background: linear-gradient(135deg, #25D366, #128C7E) !important;
-            color: white !important; padding: 15px 25px !important;
-            border-radius: 50px !important; display: flex !important;
-            align-items: center !important; gap: 10px !important;
-            text-decoration: none !important; font-weight: 700 !important;
-            font-family: 'Cairo', sans-serif !important;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5) !important;
-            z-index: 9999 !important;
-        }
+        /* WHATSAPP FLOATING */
+        .whatsapp-btn { position: fixed !important; bottom: 30px !important; left: 30px !important; background: linear-gradient(135deg, #25D366, #128C7E) !important; color: white !important; padding: 15px 25px !important; border-radius: 50px !important; display: flex !important; align-items: center !important; gap: 10px !important; text-decoration: none !important; font-weight: 700 !important; font-family: 'Cairo', sans-serif !important; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5) !important; z-index: 9999 !important; }
         .whatsapp-text { color: white !important; font-size: 0.95rem !important; }
 
+        /* MODALS */
         .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
         .checkout-modal.active { display: flex; }
         .checkout-modal-content { background: linear-gradient(135deg, #1a1a1a, #0f0f0f); border: 1px solid #d4af37; border-radius: 20px; padding: 30px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; }
@@ -132,6 +119,7 @@
         .confirm-btn { background: linear-gradient(135deg, #25D366, #128C7E); color: white; }
         .cancel-checkout-btn { background: #333; color: #ccc; }
 
+        /* ADMIN */
         .admin-login-screen { display: none; min-height: 100vh; background: #0a0a0a; align-items: center; justify-content: center; padding: 20px; }
         .admin-login-screen.active { display: flex; }
         .login-box { background: linear-gradient(135deg, #1a1a1a, #0f0f0f); border: 1px solid #d4af37; border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; }
@@ -186,6 +174,7 @@
 </head>
 <body>
 
+    <!-- ============ STORE VIEW ============ -->
     <div id="store-view">
         <header class="header">
             <div class="logo">
@@ -224,6 +213,7 @@
         </footer>
     </div>
 
+    <!-- ============ ADMIN LOGIN ============ -->
     <div class="admin-login-screen" id="admin-login-screen">
         <div class="login-box">
             <h1>🔐 لوحة المدير</h1>
@@ -233,6 +223,7 @@
         </div>
     </div>
 
+    <!-- ============ ADMIN DASHBOARD ============ -->
     <div class="admin-dashboard" id="admin-dashboard">
         <div class="dash-header">
             <h1>👑 لوحة تحكم المدير</h1>
@@ -253,12 +244,23 @@
                 <div class="stat-value" id="stat-value">0</div>
                 <div class="stat-label">قيمة المخزون (د.م)</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value" id="stat-visitors-today">0</div>
+                <div class="stat-label">زوار اليوم</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="stat-visitors-total">0</div>
+                <div class="stat-label">إجمالي الزوار</div>
+            </div>
         </div>
 
         <h2 class="section-title-admin">📦 إدارة المنتجات</h2>
         <div class="products-table-admin" id="products-table-admin"></div>
     </div>
 
+    <!-- CART SIDEBAR -->
     <aside class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h3>🛒 سلة التسوق</h3>
@@ -282,6 +284,7 @@
         </div>
     </aside>
 
+    <!-- CHECKOUT MODAL -->
     <div class="checkout-modal" id="checkout-modal">
         <div class="checkout-modal-content">
             <h2>📝 إتمام الطلب</h2>
@@ -300,6 +303,7 @@
         </div>
     </div>
 
+    <!-- ADMIN MODAL -->
     <div class="admin-modal" id="product-modal">
         <div class="admin-modal-content">
             <h2 id="modal-title">➕ إضافة منتج جديد</h2>
@@ -336,6 +340,7 @@
         </div>
     </div>
 
+    <!-- WHATSAPP FLOATING -->
     <a href="https://wa.me/212647292888?text=مرحباً، أريد الاستفسار عن منتج" target="_blank" class="whatsapp-btn">
         <svg viewBox="0 0 32 32" width="30" height="30" fill="white">
             <path d="M16 .8C7.6.8.8 7.6.8 16c0 2.7.7 5.3 2 7.6L.8 31.2l7.8-2c2.2 1.2 4.7 1.8 7.4 1.8 8.4 0 15.2-6.8 15.2-15.2S24.4.8 16 .8z"/>
@@ -346,7 +351,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = 'https://nedpatttdbkqiurkurzn.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_toujZpj9ujYjzNryLsuUbQ_Ftpgc-qp';
+        const SUPABASE_KEY = 'sb_publishable_toujzpj9ujyjzny5rsuubq_ftpgc-qp';
         const ADMIN_PASSWORD = 'admin123';
         const ADMIN_HASH = '#admin';
 
@@ -354,6 +359,7 @@
         let allProducts = [];
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
+        // ========== ROUTING ==========
         function handleRouting() {
             const hash = window.location.hash;
             const storeView = document.getElementById('store-view');
@@ -377,6 +383,7 @@
             }
         }
 
+        // ========== ADMIN LOGIN ==========
         function loginAdmin() {
             const pwd = document.getElementById('admin-password').value;
             if (pwd === ADMIN_PASSWORD) {
@@ -394,6 +401,7 @@
             window.location.reload();
         }
 
+        // ========== ADMIN DASHBOARD ==========
         async function loadAdminDashboard() {
             const { data, error } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
             if (error) { console.error(error); return; }
@@ -402,6 +410,27 @@
             document.getElementById('stat-products').textContent = allProducts.length;
             const total = allProducts.reduce((sum, p) => sum + (Number(p.price) || 0), 0);
             document.getElementById('stat-value').textContent = total;
+
+            await loadVisitorsStats();
+        }
+
+        async function loadVisitorsStats() {
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const { data: todayData } = await supabaseClient
+                    .from('visitors')
+                    .select('count')
+                    .eq('visit_date', today)
+                    .maybeSingle();
+                
+                document.getElementById('stat-visitors-today').textContent = todayData ? todayData.count : 0;
+
+                const { data: allData } = await supabaseClient.from('visitors').select('count');
+                const totalVisitors = allData ? allData.reduce((sum, v) => sum + (v.count || 0), 0) : 0;
+                document.getElementById('stat-visitors-total').textContent = totalVisitors;
+            } catch (e) {
+                console.error('خطأ في جلب الزوار:', e);
+            }
         }
 
         function renderProductsTable() {
@@ -450,14 +479,14 @@
             document.getElementById('p-image-file').value = '';
             document.getElementById('p-category').value = p.category || 'عام';
             document.getElementById('p-status').value = p.status || 'متوفر';
-            
+
             if (p.image_url) {
                 document.getElementById('image-preview').innerHTML = 
                     `<img src="${p.image_url}" style="width: 100%; max-width: 200px; border-radius: 10px; border: 2px solid #d4af37;">`;
             } else {
                 document.getElementById('image-preview').innerHTML = '';
             }
-            
+
             document.getElementById('product-modal').classList.add('active');
         }
 
@@ -523,6 +552,7 @@
             document.getElementById('product-modal').classList.remove('active');
         }
 
+        // ========== STORE ==========
         async function loadProducts() {
             const container = document.getElementById('products-container');
             try {
@@ -548,7 +578,7 @@
                 let statusClass = '';
                 let buttonDisabled = '';
                 let buttonText = 'أضف إلى السلة 🛒';
-                
+
                 if (status === 'متوفر') {
                     statusBadge = '✅ متوفر';
                     statusClass = 'status-available';
@@ -561,7 +591,7 @@
                     buttonDisabled = 'disabled';
                     buttonText = 'غير متوفر';
                 }
-                
+
                 return `
                 <div class="product-card">
                     <div class="image-wrapper">
@@ -592,6 +622,7 @@
             else renderProducts(allProducts.filter(p => p.category === cat));
         }
 
+        // ========== CART ==========
         function addToCart(productId) {
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
@@ -640,6 +671,7 @@
             document.getElementById('cart-sidebar').classList.toggle('open');
         }
 
+        // ========== CHECKOUT ==========
         function openCheckoutModal() {
             if (cart.length === 0) { alert('⚠️ السلة فارغة! أضف منتجات أولاً.'); return; }
             document.getElementById('checkout-modal').classList.add('active');
@@ -667,10 +699,41 @@
             ['c-name', 'c-phone', 'c-city', 'c-address'].forEach(id => document.getElementById(id).value = '');
         }
 
+        // ========== VISITOR TRACKING ==========
+        async function trackVisit() {
+            if (sessionStorage.getItem('visited')) return;
+            sessionStorage.setItem('visited', 'true');
+
+            const today = new Date().toISOString().split('T')[0];
+
+            try {
+                const { data: existing } = await supabaseClient
+                    .from('visitors')
+                    .select('*')
+                    .eq('visit_date', today)
+                    .maybeSingle();
+
+                if (existing) {
+                    await supabaseClient
+                        .from('visitors')
+                        .update({ count: existing.count + 1 })
+                        .eq('id', existing.id);
+                } else {
+                    await supabaseClient
+                        .from('visitors')
+                        .insert([{ visit_date: today, count: 1 }]);
+                }
+            } catch (e) {
+                console.error('خطأ في تسجيل الزيارة:', e);
+            }
+        }
+
+        // ========== INIT ==========
         window.addEventListener('hashchange', handleRouting);
         window.onload = function() {
             handleRouting();
             updateCartUI();
+            trackVisit();
         };
     </script>
 </body>
