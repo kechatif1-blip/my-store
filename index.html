@@ -54,9 +54,9 @@
         .section-title { padding: 30px 25px 15px; font-size: 1.4rem; font-weight: 900; color: #0a0a0a; display: flex; align-items: center; gap: 10px; }
         .section-title::before { content: ''; width: 5px; height: 25px; background: linear-gradient(135deg, #d4af37, #f4d03f); border-radius: 5px; }
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 0 25px 40px; }
-        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; border: 1px solid #f0f0f0; }
+        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; border: 1px solid #f0f0f0; cursor: pointer; }
         .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25); border-color: #d4af37; }
-        .product-card .image-wrapper { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f0f0f0; cursor: zoom-in; }
+        .product-card .image-wrapper { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f0f0f0; }
         .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .product-card:hover img { transform: scale(1.1); }
         .product-info { padding: 18px; }
@@ -64,89 +64,39 @@
         .product-info p { color: #888; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.5; height: 40px; overflow: hidden; }
         .product-price { font-size: 1.3rem; font-weight: 900; color: #d4af37; margin-bottom: 12px; }
         
-        .product-buttons { display: flex; gap: 8px; }
-        .buy-btn { flex: 1; padding: 11px 8px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; border: 2px solid #d4af37; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .product-buttons { display: flex; flex-direction: column; gap: 8px; }
+        .buy-btn { width: 100%; padding: 11px 8px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; border: 2px solid #d4af37; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .buy-btn:hover { background: linear-gradient(135deg, #d4af37, #f4d03f); color: #0a0a0a; }
         .buy-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
         
-        .buy-now-btn { flex: 1; padding: 11px 8px; background: linear-gradient(135deg, #10b981, #059669); color: white; border: 2px solid #10b981; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .buy-now-btn { width: 100%; padding: 11px 8px; background: linear-gradient(135deg, #10b981, #059669); color: white; border: 2px solid #10b981; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .buy-now-btn:hover { background: linear-gradient(135deg, #059669, #047857); }
         .buy-now-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
 
-        .gallery-thumbs { display: flex; gap: 5px; padding: 8px; background: #f9f9f9; overflow-x: auto; }
-        .gallery-thumbs::-webkit-scrollbar { height: 4px; }
-        .gallery-thumbs img { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; flex-shrink: 0; }
-        .gallery-thumbs img.active { border-color: #d4af37; }
-        .gallery-thumbs img:hover { border-color: #d4af37; }
+        .cash-btn { width: 100%; padding: 11px 8px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: 2px solid #f59e0b; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .cash-btn:hover { background: linear-gradient(135deg, #d97706, #b45309); }
+        .cash-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
 
         .status-badge { position: absolute; top: 10px; right: 10px; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); z-index: 2; }
         .status-available { background: linear-gradient(135deg, #10b981, #059669); }
         .status-limited { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .status-out { background: linear-gradient(135deg, #ef4444, #dc2626); }
 
-        /* ========== LIGHTBOX ========== */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 99999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .lightbox.active { display: flex; }
-        .lightbox img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
-            animation: zoomIn 0.3s ease;
-        }
-        .lightbox .close-lightbox {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: #d4af37;
-            color: #0a0a0a;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-            z-index: 100000;
-        }
-        .lightbox .close-lightbox:hover { background: #f4d03f; transform: scale(1.1); }
-        .lightbox .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.8);
-            color: #0a0a0a;
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            font-size: 1.8rem;
-            cursor: pointer;
-            font-weight: 900;
-            transition: 0.3s;
-            z-index: 100000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .lightbox .nav-btn:hover { background: #d4af37; transform: translateY(-50%) scale(1.1); }
-        .lightbox .nav-prev { right: 20px; }
-        .lightbox .nav-next { left: 20px; }
+        /* ========== PRODUCT DETAILS MODAL ========== */
+        .product-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 99999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+        .product-modal.active { display: flex; }
+        .product-modal-content { background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; animation: zoomIn 0.3s; }
+        .product-modal-image { width: 100%; height: 350px; object-fit: cover; border-radius: 20px 20px 0 0; }
+        .product-modal-body { padding: 25px; }
+        .product-modal-body h2 { font-size: 1.6rem; color: #0a0a0a; margin-bottom: 10px; }
+        .product-modal-body .modal-price { font-size: 1.5rem; color: #d4af37; font-weight: 900; margin-bottom: 15px; }
+        .product-modal-body .modal-desc { color: #555; font-size: 1rem; line-height: 1.8; margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px; border-right: 4px solid #d4af37; }
+        .product-modal-body .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
+        .product-modal-body button { padding: 15px; border: none; border-radius: 12px; font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .modal-close { position: absolute; top: 15px; left: 15px; background: rgba(0, 0, 0, 0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 10; }
+        .modal-thumbs { display: flex; gap: 8px; padding: 10px 25px; overflow-x: auto; }
+        .modal-thumbs img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+        .modal-thumbs img.active { border-color: #d4af37; }
 
         @keyframes zoomIn {
             from { transform: scale(0.7); opacity: 0; }
@@ -208,12 +158,18 @@
         .dash-actions { display: flex; gap: 10px; flex-wrap: wrap; }
         .btn-gold { padding: 10px 20px; background: linear-gradient(135deg, #d4af37, #f4d03f); color: #0a0a0a; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; font-size: 0.9rem; }
         .btn-dark { padding: 10px 20px; background: transparent; color: #d4af37; border: 1px solid #d4af37; border-radius: 10px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; font-size: 0.9rem; }
+        .btn-danger { padding: 8px 15px; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; font-size: 0.85rem; transition: 0.3s; }
+        .btn-danger:hover { background: #ef4444; color: white; }
+        
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
         .stat-card { background: linear-gradient(135deg, #1a1a1a, #0f0f0f); border: 1px solid #333; border-radius: 15px; padding: 20px; text-align: center; }
         .stat-card .stat-icon { font-size: 1.8rem; margin-bottom: 8px; }
         .stat-card .stat-value { font-size: 1.6rem; font-weight: 900; background: linear-gradient(135deg, #d4af37, #f4d03f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .stat-card .stat-label { color: #888; font-size: 0.8rem; margin-top: 5px; }
-        .section-title-admin { font-size: 1.2rem; margin-bottom: 15px; color: #d4af37; }
+        
+        .section-header-admin { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .section-title-admin { font-size: 1.2rem; color: #d4af37; }
+        
         .products-table-admin { background: #0f0f0f; border: 1px solid #333; border-radius: 15px; overflow: hidden; }
         .product-row-admin { display: grid; grid-template-columns: 55px 1fr 90px 100px 100px; gap: 12px; padding: 12px 15px; align-items: center; border-bottom: 1px solid #222; }
         .product-row-admin img { width: 55px; height: 55px; border-radius: 10px; object-fit: cover; background: #222; }
@@ -226,7 +182,6 @@
         .edit-btn { background: rgba(212, 175, 55, 0.2); color: #d4af37; }
         .delete-btn { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
 
-        /* جدول الزوار المفصل */
         .visits-table { background: #0f0f0f; border: 1px solid #333; border-radius: 15px; overflow: hidden; max-height: 400px; overflow-y: auto; margin-bottom: 25px; }
         .visit-row { display: grid; grid-template-columns: 60px 1fr 1fr; gap: 12px; padding: 12px 15px; align-items: center; border-bottom: 1px solid #222; color: #cbd5e1; font-size: 0.9rem; }
         .visit-row:last-child { border-bottom: none; }
@@ -256,10 +211,9 @@
             .whatsapp-text { display: none !important; }
             .product-row-admin { grid-template-columns: 45px 1fr; gap: 8px; }
             .product-buttons { flex-direction: column; }
-            .buy-btn, .buy-now-btn { font-size: 0.8rem; padding: 9px 6px; }
             .visit-row { grid-template-columns: 50px 1fr; font-size: 0.8rem; }
             .visit-row .visit-time { grid-column: 1 / -1; }
-            .lightbox .nav-btn { width: 45px; height: 45px; font-size: 1.4rem; }
+            .product-modal-image { height: 250px; }
         }
     </style>
 </head>
@@ -347,7 +301,10 @@
             </div>
         </div>
 
-        <h2 class="section-title-admin">⏰ سجل دخول الزوار (آخر 50 زيارة)</h2>
+        <div class="section-header-admin">
+            <h2 class="section-title-admin">⏰ سجل دخول الزوار (آخر 50 زيارة)</h2>
+            <button class="btn-danger" onclick="clearVisitorLog()">🗑️ حذف السجل</button>
+        </div>
         <div class="visits-table" id="visits-table">
             <div style="text-align:center;padding:30px;color:#888;">جاري التحميل...</div>
         </div>
@@ -436,12 +393,19 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox" onclick="if(event.target === this) closeLightbox()">
-        <button class="close-lightbox" onclick="closeLightbox()">✕</button>
-        <button class="nav-btn nav-prev" onclick="navigateLightbox(-1)">‹</button>
-        <img id="lightbox-img" src="" alt="">
-        <button class="nav-btn nav-next" onclick="navigateLightbox(1)">›</button>
+    <!-- PRODUCT DETAILS MODAL (للزبون) -->
+    <div class="product-modal" id="product-details-modal">
+        <div class="product-modal-content">
+            <button class="modal-close" onclick="closeProductDetails()">✕</button>
+            <img id="details-image" class="product-modal-image" src="" alt="">
+            <div class="modal-thumbs" id="details-thumbs"></div>
+            <div class="product-modal-body">
+                <h2 id="details-name"></h2>
+                <div class="modal-price" id="details-price"></div>
+                <div class="modal-desc" id="details-desc"></div>
+                <div class="modal-buttons" id="details-buttons"></div>
+            </div>
+        </div>
     </div>
 
     <!-- WHATSAPP FLOATING -->
@@ -463,8 +427,7 @@
         let allProducts = [];
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         let currentImages = [];
-        let lightboxImages = [];
-        let lightboxIndex = 0;
+        let currentDetailsProduct = null;
 
         // ========== ROUTING ==========
         function handleRouting() {
@@ -559,10 +522,13 @@
 
                 container.innerHTML = data.map((visit, i) => {
                     const date = new Date(visit.visited_at);
+                    // توقيت المغرب (Africa/Casablanca)
                     const dateStr = date.toLocaleDateString('ar-MA', { 
+                        timeZone: 'Africa/Casablanca',
                         year: 'numeric', month: '2-digit', day: '2-digit' 
                     });
                     const timeStr = date.toLocaleTimeString('ar-MA', { 
+                        timeZone: 'Africa/Casablanca',
                         hour: '2-digit', minute: '2-digit', second: '2-digit' 
                     });
                     return `
@@ -576,6 +542,20 @@
             } catch (e) {
                 console.error('خطأ في جلب السجل:', e);
                 container.innerHTML = '<div style="text-align:center;padding:30px;color:#ef4444;">⚠️ حدث خطأ في تحميل السجل</div>';
+            }
+        }
+
+        async function clearVisitorLog() {
+            if (!confirm('⚠️ هل أنت متأكد من حذف كل سجل الزوار؟ لا يمكن التراجع!')) return;
+            
+            try {
+                await supabaseClient.from('visits_log').delete().neq('id', 0);
+                await supabaseClient.from('visitors').delete().neq('id', 0);
+                alert('✅ تم حذف السجل بنجاح');
+                await loadVisitorsStats();
+                await loadVisitsLog();
+            } catch (e) {
+                alert('❌ خطأ في الحذف: ' + e.message);
             }
         }
 
@@ -761,6 +741,7 @@
                 let buttonDisabled = '';
                 let buttonText = 'أضف للسلة 🛒';
                 let buyNowText = 'اشتراء الآن 💳';
+                let cashText = 'دفع عند الاستلام 💵';
 
                 if (status === 'متوفر') {
                     statusBadge = '✅ متوفر';
@@ -774,6 +755,7 @@
                     buttonDisabled = 'disabled';
                     buttonText = 'غير متوفر';
                     buyNowText = 'غير متوفر';
+                    cashText = 'غير متوفر';
                 }
 
                 const allImages = [p.image_url, ...(Array.isArray(p.images) ? p.images : [])]
@@ -781,26 +763,18 @@
                 
                 const mainImage = allImages[0] || 'https://via.placeholder.com/300x220/e0e0e0/999999?text=No+Image';
 
-                const galleryHTML = allImages.length > 1 ? `
-                    <div class="gallery-thumbs">
-                        ${allImages.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" onclick="changeMainImage(this, '${img}')">`).join('')}
-                    </div>
-                ` : '';
-
                 return `
-                <div class="product-card" data-images='${JSON.stringify(allImages).replace(/'/g, "&apos;")}'>
-                    <div class="image-wrapper" onclick="openLightboxFromProduct(this)">
+                <div class="product-card" onclick="openProductDetails(${p.id})">
+                    <div class="image-wrapper">
                         <img src="${mainImage}" alt="${p.name}">
                         <span class="status-badge ${statusClass}">${statusBadge}</span>
                     </div>
-                    ${galleryHTML}
                     <div class="product-info">
                         <h3>${p.name}</h3>
-                        <p>${p.description || 'لا يوجد وصف'}</p>
                         <div class="product-price">${p.price} د.م</div>
-                        <div class="product-buttons">
+                        <div class="product-buttons" onclick="event.stopPropagation()">
                             <button class="buy-btn" onclick="addToCart(${p.id})" ${buttonDisabled}>${buttonText}</button>
-                            <button class="buy-now-btn" onclick="buyNow(${p.id})" ${buttonDisabled}>${buyNowText}</button>
+                            <button class="cash-btn" onclick="cashOnDelivery(${p.id})" ${buttonDisabled}>${cashText}</button>
                         </div>
                     </div>
                 </div>
@@ -808,82 +782,57 @@
             }).join('');
         }
 
-        function changeMainImage(thumb, url) {
-            const parent = thumb.closest('.product-card');
-            const mainImg = parent.querySelector('.image-wrapper img');
-            mainImg.src = url;
-            parent.querySelectorAll('.gallery-thumbs img').forEach(t => t.classList.remove('active'));
+        // ========== PRODUCT DETAILS MODAL ==========
+        function openProductDetails(id) {
+            const p = allProducts.find(x => x.id === id);
+            if (!p) return;
+            
+            currentDetailsProduct = p;
+            
+            const allImages = [p.image_url, ...(Array.isArray(p.images) ? p.images : [])]
+                .filter((v, i, arr) => v && arr.indexOf(v) === i);
+            
+            document.getElementById('details-image').src = allImages[0] || 'https://via.placeholder.com/300x220/e0e0e0/999999?text=No+Image';
+            document.getElementById('details-name').textContent = p.name;
+            document.getElementById('details-price').textContent = p.price + ' د.م';
+            document.getElementById('details-desc').textContent = p.description || 'لا يوجد وصف لهذا المنتج.';
+            
+            // الصور المصغرة
+            const thumbsContainer = document.getElementById('details-thumbs');
+            if (allImages.length > 1) {
+                thumbsContainer.style.display = 'flex';
+                thumbsContainer.innerHTML = allImages.map((img, i) => 
+                    `<img src="${img}" class="${i === 0 ? 'active' : ''}" onclick="changeDetailsImage(this, '${img}')">`
+                ).join('');
+            } else {
+                thumbsContainer.style.display = 'none';
+            }
+
+            // الأزرار
+            const status = p.status || 'متوفر';
+            const isOut = status === 'غير متوفر';
+            
+            document.getElementById('details-buttons').innerHTML = `
+                <button class="buy-btn" onclick="addToCart(${p.id})" ${isOut ? 'disabled' : ''} style="background:#0a0a0a;color:#d4af37;border-color:#d4af37;">
+                    ${isOut ? 'غير متوفر' : 'أضف للسلة 🛒'}
+                </button>
+                <button class="cash-btn" onclick="cashOnDelivery(${p.id})" ${isOut ? 'disabled' : ''} style="background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-color:#f59e0b;">
+                    ${isOut ? 'غير متوفر' : 'دفع عند الاستلام 💵'}
+                </button>
+            `;
+
+            document.getElementById('product-details-modal').classList.add('active');
+        }
+
+        function changeDetailsImage(thumb, url) {
+            document.getElementById('details-image').src = url;
+            document.querySelectorAll('#details-thumbs img').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
         }
 
-        // ========== LIGHTBOX ==========
-        function openLightboxFromProduct(wrapper) {
-            const card = wrapper.closest('.product-card');
-            const imagesAttr = card.getAttribute('data-images');
-            try {
-                lightboxImages = JSON.parse(imagesAttr);
-            } catch (e) {
-                lightboxImages = [];
-            }
-            
-            if (lightboxImages.length === 0) return;
-            
-            // الصورة الحالية هي التي تظهر في الصورة الرئيسية
-            const currentImg = wrapper.querySelector('img').src;
-            lightboxIndex = lightboxImages.findIndex(img => currentImg.includes(img) || img.includes(currentImg));
-            if (lightboxIndex < 0) lightboxIndex = 0;
-            
-            updateLightbox();
-            document.getElementById('lightbox').classList.add('active');
-        }
-
-        function updateLightbox() {
-            const img = document.getElementById('lightbox-img');
-            img.src = lightboxImages[lightboxIndex];
-            
-            // إظهار أو إخفاء أزرار التنقل
-            const prevBtn = document.querySelector('.nav-prev');
-            const nextBtn = document.querySelector('.nav-next');
-            
-            if (lightboxImages.length <= 1) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'flex';
-                nextBtn.style.display = 'flex';
-            }
-        }
-
-        function navigateLightbox(dir) {
-            lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
-            updateLightbox();
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        // إغلاق الـ Lightbox بالضغط على ESC أو الأسهم
-        document.addEventListener('keydown', (e) => {
-            const lb = document.getElementById('lightbox');
-            if (!lb.classList.contains('active')) return;
-            
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') navigateLightbox(-1);
-            if (e.key === 'ArrowRight') navigateLightbox(1);
-        });
-
-        function searchProducts() {
-            const term = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allProducts.filter(p => p.name.toLowerCase().includes(term) || (p.description && p.description.toLowerCase().includes(term)));
-            renderProducts(filtered);
-        }
-
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (cat === 'all') renderProducts(allProducts);
-            else renderProducts(allProducts.filter(p => p.category === cat));
+        function closeProductDetails() {
+            document.getElementById('product-details-modal').classList.remove('active');
+            currentDetailsProduct = null;
         }
 
         // ========== CART ==========
@@ -900,9 +849,10 @@
             saveCart();
             updateCartUI();
             alert('✅ تمت الإضافة إلى السلة');
+            closeProductDetails();
         }
 
-        function buyNow(productId) {
+        function cashOnDelivery(productId) {
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
             if (product.status === 'غير متوفر') {
@@ -910,12 +860,15 @@
                 return;
             }
             
+            // إضافة المنتج للسلة
             const existing = cart.find(item => item.id === productId);
             if (existing) existing.qty += 1;
             else cart.push({ ...product, qty: 1 });
             saveCart();
             updateCartUI();
             
+            closeProductDetails();
+            // فتح نموذج إتمام الطلب
             document.getElementById('checkout-modal').classList.add('active');
         }
 
@@ -975,7 +928,7 @@
                 total += itemTotal;
                 productsList += `\n${i + 1}. ${item.name} × ${item.qty} = ${itemTotal} د.م`;
             });
-            const message = `🛒 *طلب جديد من المتجر*\n\n👤 *الاسم:* ${name}\n📱 *الهاتف:* ${phone}\n🏙️ *المدينة:* ${city}\n📍 *العنوان:* ${address}\n\n📦 *المنتجات:*${productsList}\n\n💰 *الإجمالي:* ${total} د.م\n\nشكراً لك! 🙏`;
+            const message = `🛒 *طلب جديد من المتجر*\n\n👤 *الاسم:* ${name}\n📱 *الهاتف:* ${phone}\n🏙️ *المدينة:* ${city}\n📍 *العنوان:* ${address}\n\n📦 *المنتجات:*${productsList}\n\n💰 *الإجمالي:* ${total} د.م\n💵 *الدفع:* عند الاستلام\n\nشكراً لك! 🙏`;
             window.open(`https://wa.me/212647292888?text=${encodeURIComponent(message)}`, '_blank');
             closeCheckoutModal();
             ['c-name', 'c-phone', 'c-city', 'c-address'].forEach(id => document.getElementById(id).value = '');
@@ -989,7 +942,6 @@
             const today = new Date().toISOString().split('T')[0];
 
             try {
-                // 1. تسجيل في جدول visitors (العدد اليومي)
                 const { data: existing } = await supabaseClient
                     .from('visitors')
                     .select('*')
@@ -1007,7 +959,6 @@
                         .insert([{ visit_date: today, count: 1 }]);
                 }
 
-                // 2. تسجيل تفصيلي في visits_log (مع الوقت)
                 await supabaseClient
                     .from('visits_log')
                     .insert([{
