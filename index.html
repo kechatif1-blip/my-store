@@ -64,18 +64,18 @@
         .product-info p { color: #888; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.5; height: 40px; overflow: hidden; }
         .product-price { font-size: 1.3rem; font-weight: 900; color: #d4af37; margin-bottom: 12px; }
         
-        .product-buttons { display: flex; flex-direction: column; gap: 8px; }
-        .buy-btn { width: 100%; padding: 11px 8px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; border: 2px solid #d4af37; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        /* 3 أزرار في البطاقة */
+        .product-buttons { display: flex; flex-direction: column; gap: 6px; }
+        .buy-btn { width: 100%; padding: 8px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; border: 2px solid #d4af37; border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .buy-btn:hover { background: linear-gradient(135deg, #d4af37, #f4d03f); color: #0a0a0a; }
-        .buy-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
         
-        .buy-now-btn { width: 100%; padding: 11px 8px; background: linear-gradient(135deg, #10b981, #059669); color: white; border: 2px solid #10b981; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .buy-now-btn:hover { background: linear-gradient(135deg, #059669, #047857); }
-        .buy-now-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
-
-        .cash-btn { width: 100%; padding: 11px 8px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: 2px solid #f59e0b; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .cash-btn:hover { background: linear-gradient(135deg, #d97706, #b45309); }
-        .cash-btn:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; }
+        .buy-now-btn { width: 100%; padding: 8px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: 2px solid #3b82f6; border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .buy-now-btn:hover { background: linear-gradient(135deg, #1d4ed8, #1e40af); }
+        
+        .cash-btn { width: 100%; padding: 8px; background: linear-gradient(135deg, #10b981, #059669); color: white; border: 2px solid #10b981; border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .cash-btn:hover { background: linear-gradient(135deg, #059669, #047857); }
+        
+        button:disabled { background: #ccc !important; color: #666 !important; border-color: #ccc !important; cursor: not-allowed !important; transform: none !important; }
 
         .status-badge { position: absolute; top: 10px; right: 10px; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); z-index: 2; }
         .status-available { background: linear-gradient(135deg, #10b981, #059669); }
@@ -85,28 +85,48 @@
         /* ========== PRODUCT DETAILS MODAL ========== */
         .product-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 99999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
         .product-modal.active { display: flex; }
-        .product-modal-content { background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; animation: zoomIn 0.3s; }
-        .product-modal-image { width: 100%; height: 350px; object-fit: cover; border-radius: 20px 20px 0 0; }
+        .product-modal-content { background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 95vh; overflow-y: auto; position: relative; animation: zoomIn 0.3s; }
+        .product-modal-image { width: 100%; height: 300px; object-fit: cover; border-radius: 20px 20px 0 0; }
+        .modal-thumbs { display: flex; gap: 8px; padding: 10px 25px; overflow-x: auto; }
+        .modal-thumbs img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+        .modal-thumbs img.active { border-color: #d4af37; }
+        
         .product-modal-body { padding: 25px; }
         .product-modal-body h2 { font-size: 1.6rem; color: #0a0a0a; margin-bottom: 10px; }
         .product-modal-body .modal-price { font-size: 1.5rem; color: #d4af37; font-weight: 900; margin-bottom: 15px; }
         .product-modal-body .modal-desc { color: #555; font-size: 1rem; line-height: 1.8; margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px; border-right: 4px solid #d4af37; }
-        .product-modal-body .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
-        .product-modal-body button { padding: 15px; border: none; border-radius: 12px; font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        
+        /* أزرار نافذة التفاصيل */
+        .modal-buttons { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+        .modal-buttons button { padding: 14px; border: none; border-radius: 12px; font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        
         .modal-close { position: absolute; top: 15px; left: 15px; background: rgba(0, 0, 0, 0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 10; }
-        .modal-thumbs { display: flex; gap: 8px; padding: 10px 25px; overflow-x: auto; }
-        .modal-thumbs img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
-        .modal-thumbs img.active { border-color: #d4af37; }
 
-        @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        /* ========== REVIEWS SECTION ========== */
+        .reviews-section { margin-top: 25px; border-top: 2px dashed #eee; padding-top: 25px; }
+        .reviews-section h3 { font-size: 1.2rem; color: #0a0a0a; margin-bottom: 15px; }
+        .reviews-list { margin-bottom: 20px; max-height: 250px; overflow-y: auto; }
+        .review-item { background: #f9f9f9; padding: 12px; border-radius: 10px; margin-bottom: 10px; border-right: 3px solid #d4af37; }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .review-name { font-weight: 700; color: #333; font-size: 0.95rem; }
+        .review-stars { color: #f59e0b; font-size: 0.9rem; direction: ltr;}
+        .review-comment { color: #555; font-size: 0.9rem; line-height: 1.5; }
+        .review-date { font-size: 0.7rem; color: #999; margin-top: 5px; }
+        
+        .add-review-form { background: #f9f9f9; padding: 15px; border-radius: 12px; }
+        .add-review-form input, .add-review-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo', sans-serif; outline: none; }
+        .add-review-form textarea { resize: vertical; min-height: 60px; }
+        .star-rating-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 5px; margin-bottom: 10px; direction: ltr; }
+        .star-rating-input span { font-size: 1.5rem; cursor: pointer; color: #ddd; transition: 0.2s; }
+        .star-rating-input span.active { color: #f59e0b; }
+        .submit-review-btn { width: 100%; padding: 12px; background: #0a0a0a; color: #d4af37; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: 'Cairo', sans-serif; }
+        .submit-review-btn:hover { background: #d4af37; color: #0a0a0a; }
 
         .loading, .no-products { text-align: center; padding: 60px 20px; color: #999; font-size: 1.1rem; grid-column: 1 / -1; }
         footer { background: #0a0a0a; color: #d4af37; text-align: center; padding: 25px; margin-top: 40px; border-top: 2px solid #d4af37; }
         footer p { font-size: 0.9rem; }
 
+        /* CART */
         .cart-sidebar { position: fixed; top: 0; left: -400px; width: 380px; max-width: 90%; height: 100%; background: white; box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3); z-index: 1001; transition: 0.4s; display: flex; flex-direction: column; }
         .cart-sidebar.open { left: 0; }
         .cart-header { padding: 20px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); color: #d4af37; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #d4af37; }
@@ -210,7 +230,6 @@
             .whatsapp-btn { bottom: 20px !important; left: 20px !important; padding: 12px 18px !important; }
             .whatsapp-text { display: none !important; }
             .product-row-admin { grid-template-columns: 45px 1fr; gap: 8px; }
-            .product-buttons { flex-direction: column; }
             .visit-row { grid-template-columns: 50px 1fr; font-size: 0.8rem; }
             .visit-row .visit-time { grid-column: 1 / -1; }
             .product-modal-image { height: 250px; }
@@ -302,7 +321,7 @@
         </div>
 
         <div class="section-header-admin">
-            <h2 class="section-title-admin">⏰ سجل دخول الزوار (آخر 50 زيارة)</h2>
+            <h2 class="section-title-admin">⏰ سجل دخول الزوار</h2>
             <button class="btn-danger" onclick="clearVisitorLog()">🗑️ حذف السجل</button>
         </div>
         <div class="visits-table" id="visits-table">
@@ -403,7 +422,38 @@
                 <h2 id="details-name"></h2>
                 <div class="modal-price" id="details-price"></div>
                 <div class="modal-desc" id="details-desc"></div>
+                
                 <div class="modal-buttons" id="details-buttons"></div>
+
+                <!-- قسم التقييمات والتعليقات -->
+                <div class="reviews-section">
+                    <h3>⭐ التقييمات والتعليقات</h3>
+                    
+                    <div class="reviews-list" id="reviews-list">
+                        <p style="color:#888;font-size:0.9rem;">جاري تحميل التقييمات...</p>
+                    </div>
+
+                    <div class="add-review-form">
+                        <h4 style="margin-bottom:10px;font-size:1rem;color:#333;">أضف تقييمك:</h4>
+                        <div class="star-rating-input" id="star-input" onmouseleave="resetStars()">
+                            <!-- 10 نجوم -->
+                            <span onclick="setRating(1)" onmouseover="hoverStars(1)">★</span>
+                            <span onclick="setRating(2)" onmouseover="hoverStars(2)">★</span>
+                            <span onclick="setRating(3)" onmouseover="hoverStars(3)">★</span>
+                            <span onclick="setRating(4)" onmouseover="hoverStars(4)">★</span>
+                            <span onclick="setRating(5)" onmouseover="hoverStars(5)">★</span>
+                            <span onclick="setRating(6)" onmouseover="hoverStars(6)">★</span>
+                            <span onclick="setRating(7)" onmouseover="hoverStars(7)">★</span>
+                            <span onclick="setRating(8)" onmouseover="hoverStars(8)">★</span>
+                            <span onclick="setRating(9)" onmouseover="hoverStars(9)">★</span>
+                            <span onclick="setRating(10)" onmouseover="hoverStars(10)">★</span>
+                        </div>
+                        <input type="text" id="review-name" placeholder="اسمك">
+                        <textarea id="review-comment" placeholder="اكتب تعليقك هنا..."></textarea>
+                        <button class="submit-review-btn" onclick="submitReview()">إرسال التقييم</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -427,7 +477,11 @@
         let allProducts = [];
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         let currentImages = [];
+        
+        // متغيرات التقييم
         let currentDetailsProduct = null;
+        let selectedRating = 0;
+        let currentProductReviews = [];
 
         // ========== ROUTING ==========
         function handleRouting() {
@@ -522,7 +576,6 @@
 
                 container.innerHTML = data.map((visit, i) => {
                     const date = new Date(visit.visited_at);
-                    // توقيت المغرب (Africa/Casablanca)
                     const dateStr = date.toLocaleDateString('ar-MA', { 
                         timeZone: 'Africa/Casablanca',
                         year: 'numeric', month: '2-digit', day: '2-digit' 
@@ -739,9 +792,9 @@
                 let statusBadge = '';
                 let statusClass = '';
                 let buttonDisabled = '';
-                let buttonText = 'أضف للسلة 🛒';
-                let buyNowText = 'اشتراء الآن 💳';
-                let cashText = 'دفع عند الاستلام 💵';
+                let buttonText = '🛒 أضف للسلة';
+                let buyNowText = '⚡ اطلب الآن';
+                let cashText = '💵 دفع عند الاستلام';
 
                 if (status === 'متوفر') {
                     statusBadge = '✅ متوفر';
@@ -774,6 +827,7 @@
                         <div class="product-price">${p.price} د.م</div>
                         <div class="product-buttons" onclick="event.stopPropagation()">
                             <button class="buy-btn" onclick="addToCart(${p.id})" ${buttonDisabled}>${buttonText}</button>
+                            <button class="buy-now-btn" onclick="buyNow(${p.id})" ${buttonDisabled}>${buyNowText}</button>
                             <button class="cash-btn" onclick="cashOnDelivery(${p.id})" ${buttonDisabled}>${cashText}</button>
                         </div>
                     </div>
@@ -782,12 +836,16 @@
             }).join('');
         }
 
-        // ========== PRODUCT DETAILS MODAL ==========
-        function openProductDetails(id) {
+        // ========== PRODUCT DETAILS & REVIEWS ==========
+        async function openProductDetails(id) {
             const p = allProducts.find(x => x.id === id);
             if (!p) return;
             
             currentDetailsProduct = p;
+            selectedRating = 0;
+            resetStars();
+            document.getElementById('review-name').value = '';
+            document.getElementById('review-comment').value = '';
             
             const allImages = [p.image_url, ...(Array.isArray(p.images) ? p.images : [])]
                 .filter((v, i, arr) => v && arr.indexOf(v) === i);
@@ -797,7 +855,6 @@
             document.getElementById('details-price').textContent = p.price + ' د.م';
             document.getElementById('details-desc').textContent = p.description || 'لا يوجد وصف لهذا المنتج.';
             
-            // الصور المصغرة
             const thumbsContainer = document.getElementById('details-thumbs');
             if (allImages.length > 1) {
                 thumbsContainer.style.display = 'flex';
@@ -808,20 +865,19 @@
                 thumbsContainer.style.display = 'none';
             }
 
-            // الأزرار
             const status = p.status || 'متوفر';
             const isOut = status === 'غير متوفر';
             
             document.getElementById('details-buttons').innerHTML = `
-                <button class="buy-btn" onclick="addToCart(${p.id})" ${isOut ? 'disabled' : ''} style="background:#0a0a0a;color:#d4af37;border-color:#d4af37;">
-                    ${isOut ? 'غير متوفر' : 'أضف للسلة 🛒'}
-                </button>
-                <button class="cash-btn" onclick="cashOnDelivery(${p.id})" ${isOut ? 'disabled' : ''} style="background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-color:#f59e0b;">
-                    ${isOut ? 'غير متوفر' : 'دفع عند الاستلام 💵'}
-                </button>
+                <button class="buy-btn" onclick="addToCart(${p.id})" ${isOut ? 'disabled' : ''} style="background:#0a0a0a;color:#d4af37;border-color:#d4af37;">${isOut ? 'غير متوفر' : '🛒 أضف للسلة'}</button>
+                <button class="buy-now-btn" onclick="buyNow(${p.id})" ${isOut ? 'disabled' : ''} style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;border-color:#3b82f6;">${isOut ? 'غير متوفر' : '⚡ اطلب الآن'}</button>
+                <button class="cash-btn" onclick="cashOnDelivery(${p.id})" ${isOut ? 'disabled' : ''} style="background:linear-gradient(135deg,#10b981,#059669);color:white;border-color:#10b981;">${isOut ? 'غير متوفر' : '💵 دفع عند الاستلام'}</button>
             `;
 
             document.getElementById('product-details-modal').classList.add('active');
+            
+            // تحميل التقييمات
+            await loadReviews(p.id);
         }
 
         function changeDetailsImage(thumb, url) {
@@ -835,7 +891,113 @@
             currentDetailsProduct = null;
         }
 
-        // ========== CART ==========
+        // ========== REVIEWS SYSTEM ==========
+        async function loadReviews(productId) {
+            const container = document.getElementById('reviews-list');
+            container.innerHTML = '<p style="color:#888;font-size:0.9rem;">جاري تحميل التقييمات...</p>';
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('reviews')
+                    .select('*')
+                    .eq('product_id', productId)
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                currentProductReviews = data || [];
+                
+                if (currentProductReviews.length === 0) {
+                    container.innerHTML = '<p style="color:#888;font-size:0.9rem;text-align:center;padding:10px;">لا توجد تقييمات بعد. كن أول من يقيّم!</p>';
+                    return;
+                }
+
+                container.innerHTML = currentProductReviews.map(r => {
+                    const stars = '★'.repeat(r.rating) + '☆'.repeat(10 - r.rating);
+                    const date = new Date(r.created_at).toLocaleDateString('ar-MA');
+                    return `
+                        <div class="review-item">
+                            <div class="review-header">
+                                <span class="review-name">${r.reviewer_name}</span>
+                                <span class="review-stars">${stars} (${r.rating}/10)</span>
+                            </div>
+                            <div class="review-comment">${r.comment}</div>
+                            <div class="review-date">${date}</div>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (e) {
+                console.error(e);
+                container.innerHTML = '<p style="color:#ef4444;font-size:0.9rem;">حدث خطأ في تحميل التقييمات</p>';
+            }
+        }
+
+        // نجوم التقييم
+        function setRating(num) {
+            selectedRating = num;
+            updateStarsColor();
+        }
+
+        function hoverStars(num) {
+            const stars = document.querySelectorAll('#star-input span');
+            stars.forEach((star, i) => {
+                if (i < num) star.style.color = '#f59e0b';
+                else star.style.color = '#ddd';
+            });
+        }
+
+        function resetStars() {
+            const stars = document.querySelectorAll('#star-input span');
+            stars.forEach((star, i) => {
+                if (i < selectedRating) star.style.color = '#f59e0b';
+                else star.style.color = '#ddd';
+            });
+        }
+
+        function updateStarsColor() {
+            resetStars();
+        }
+
+        async function submitReview() {
+            if (!currentDetailsProduct) return;
+            
+            const name = document.getElementById('review-name').value.trim();
+            const comment = document.getElementById('review-comment').value.trim();
+            
+            if (!name) { alert('⚠️ الرجاء إدخال اسمك'); return; }
+            if (selectedRating === 0) { alert('⚠️ الرجاء اختيار التقييم (1-10 نجوم)'); return; }
+            if (!comment) { alert('⚠️ الرجاء كتابة تعليق'); return; }
+
+            const btn = document.querySelector('.submit-review-btn');
+            btn.textContent = 'جاري الإرسال...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await supabaseClient.from('reviews').insert([{
+                    product_id: currentDetailsProduct.id,
+                    reviewer_name: name,
+                    comment: comment,
+                    rating: selectedRating
+                }]);
+
+                if (error) throw error;
+                
+                alert('✅ شكراً لك! تم إضافة تقييمك.');
+                document.getElementById('review-name').value = '';
+                document.getElementById('review-comment').value = '';
+                selectedRating = 0;
+                resetStars();
+                await loadReviews(currentDetailsProduct.id);
+
+            } catch (e) {
+                alert('❌ حدث خطأ: ' + e.message);
+            } finally {
+                btn.textContent = 'إرسال التقييم';
+                btn.disabled = false;
+            }
+        }
+
+        // ========== CART & ORDERING ==========
         function addToCart(productId) {
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
@@ -852,6 +1014,22 @@
             closeProductDetails();
         }
 
+        function buyNow(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+            if (product.status === 'غير متوفر') {
+                alert('⚠️ هذا المنتج غير متوفر حالياً');
+                return;
+            }
+            const existing = cart.find(item => item.id === productId);
+            if (existing) existing.qty += 1;
+            else cart.push({ ...product, qty: 1 });
+            saveCart();
+            updateCartUI();
+            closeProductDetails();
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+
         function cashOnDelivery(productId) {
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
@@ -859,16 +1037,12 @@
                 alert('⚠️ هذا المنتج غير متوفر حالياً');
                 return;
             }
-            
-            // إضافة المنتج للسلة
             const existing = cart.find(item => item.id === productId);
             if (existing) existing.qty += 1;
             else cart.push({ ...product, qty: 1 });
             saveCart();
             updateCartUI();
-            
             closeProductDetails();
-            // فتح نموذج إتمام الطلب
             document.getElementById('checkout-modal').classList.add('active');
         }
 
