@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجري الإلكتروني</title>
+    <title>متجري - تاجر عاطف</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
@@ -15,6 +15,12 @@
         .header { background: linear-gradient(135deg, #0a0a0a, #1a1a1a); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-bottom: 2px solid #d4af37; flex-wrap: wrap; gap: 10px; }
         .header .logo { color: #d4af37; font-size: 1.4rem; font-weight: 900; display: flex; align-items: center; gap: 10px; }
         .header .logo-icon { background: linear-gradient(135deg, #d4af37, #f4d03f); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #0a0a0a; }
+        
+        /* تعديل الشعار لإضافة اسم تاجر عاطف */
+        .logo-text-container { display: flex; flex-direction: column; line-height: 1.2; }
+        .logo-text-container .main-name { font-size: 1.3rem; font-weight: 900; }
+        .logo-text-container .sub-name { font-size: 0.75rem; color: #a0a0a0; font-weight: 600; }
+
         .cart-btn { background: linear-gradient(135deg, #d4af37, #f4d03f); color: #0a0a0a; padding: 10px 20px; border-radius: 25px; font-weight: 700; cursor: pointer; border: none; font-family: 'Cairo', sans-serif; font-size: 0.95rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .cart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); }
 
@@ -72,7 +78,9 @@
         .product-modal-body .modal-desc { color: #555; font-size: 1rem; line-height: 1.8; margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px; border-right: 4px solid #d4af37; }
         .modal-buttons { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
         .modal-buttons button { padding: 14px; border: none; border-radius: 12px; font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .modal-close { position: absolute; top: 15px; left: 15px; background: rgba(0, 0, 0, 0.6); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 10; }
+        
+        .modal-close { position: absolute; top: 15px; left: 15px; background: rgba(0, 0, 0, 0.6); color: white; border: none; height: 40px; border-radius: 20px; padding: 0 15px; font-size: 0.9rem; cursor: pointer; z-index: 10; display: flex; align-items: center; gap: 5px; font-family: 'Cairo', sans-serif; font-weight: bold; }
+        .modal-close:hover { background: #d4af37; color: #0a0a0a; }
 
         /* REVIEWS */
         .reviews-section { margin-top: 25px; border-top: 2px dashed #eee; padding-top: 25px; }
@@ -198,7 +206,13 @@
     <!-- STORE VIEW -->
     <div id="store-view">
         <header class="header">
-            <div class="logo"><span class="logo-icon">👑</span><span>متجري</span></div>
+            <div class="logo">
+                <span class="logo-icon">👑</span>
+                <div class="logo-text-container">
+                    <span class="main-name">متجري</span>
+                    <span class="sub-name">تاجر عاطف</span>
+                </div>
+            </div>
             <button class="cart-btn" onclick="toggleCart()">🛒 السلة (<span id="cart-count">0</span>)</button>
         </header>
 
@@ -224,7 +238,7 @@
             <p class="loading">جاري تحميل المنتجات...</p>
         </div>
 
-        <footer><p>© 2025 متجري الإلكتروني - جميع الحقوق محفوظة</p></footer>
+        <footer><p>© 2025 متجري - تاجر عاطف - جميع الحقوق محفوظة</p></footer>
     </div>
 
     <!-- ADMIN LOGIN -->
@@ -330,7 +344,7 @@
     <!-- PRODUCT DETAILS MODAL -->
     <div class="product-modal" id="product-details-modal">
         <div class="product-modal-content">
-            <button class="modal-close" onclick="closeProductDetails()">✕</button>
+            <button class="modal-close" onclick="closeProductDetails()">← رجوع</button>
             <img id="details-image" class="product-modal-image" src="" alt="">
             <div class="modal-thumbs" id="details-thumbs"></div>
             <div class="product-modal-body">
@@ -595,6 +609,10 @@
             `;
 
             document.getElementById('product-details-modal').classList.add('active');
+            
+            // إضافة حالة للتاريخ (History) ليعمل زر الرجوع في الهاتف
+            history.pushState({ modal: 'product' }, '');
+
             await loadReviews(p.id);
         }
 
@@ -604,7 +622,15 @@
             thumb.classList.add('active');
         }
 
-        function closeProductDetails() { document.getElementById('product-details-modal').classList.remove('active'); currentDetailsProduct = null; }
+        function closeProductDetails() { 
+            document.getElementById('product-details-modal').classList.remove('active'); 
+            currentDetailsProduct = null; 
+            
+            // إذا كان المستخدم قد فتح النافذة، نقوم بإلغاء الخطوة الأخيرة في المتصفح
+            if (history.state && history.state.modal === 'product') {
+                history.back();
+            }
+        }
 
         async function loadReviews(productId) {
             const container = document.getElementById('reviews-list');
@@ -809,6 +835,15 @@
                 await supabaseClient.from('visits_log').insert([{ user_agent: navigator.userAgent.substring(0, 100) }]);
             } catch (e) {}
         }
+
+        // ========== HISTORY API FOR BACK BUTTON ==========
+        window.addEventListener('popstate', (e) => {
+            const modal = document.getElementById('product-details-modal');
+            if (modal && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                currentDetailsProduct = null;
+            }
+        });
 
         window.addEventListener('hashchange', handleRouting);
         window.onload = function() { handleRouting(); updateCartUI(); trackVisit(); };
