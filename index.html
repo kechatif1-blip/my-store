@@ -600,11 +600,16 @@
                 if (currentProductReviews.length === 0) { container.innerHTML = '<p style="color:#888;font-size:0.9rem;text-align:center;padding:10px;">لا توجد تقييمات بعد.</p>'; return; }
                 
                 let likedReviews = JSON.parse(localStorage.getItem('likedReviews') || '[]');
+                const isAdmin = sessionStorage.getItem('isAdmin') === 'true'; // التحقق مما إذا كان مديراً
 
                 container.innerHTML = currentProductReviews.map(r => {
                     const stars = '★'.repeat(r.rating) + '☆'.repeat(10 - r.rating);
                     const date = new Date(r.created_at).toLocaleDateString('ar-MA');
                     const isLiked = likedReviews.includes(r.id);
+                    
+                    // إظهار زر الحذف فقط إذا كان المستخدم مديراً
+                    const deleteBtnHTML = isAdmin ? `<button class="delete-review-btn" onclick="deleteReview(${r.id})" title="حذف (للمدير)">🗑️</button>` : '';
+
                     return `
                         <div class="review-item">
                             <div class="review-header"><span class="review-name">${r.reviewer_name}</span><span class="review-stars">${stars} (${r.rating}/10)</span></div>
@@ -614,7 +619,7 @@
                                 <button class="like-btn" onclick="likeReview(${r.id}, ${r.likes || 0})" style="color: ${isLiked ? '#ef4444' : '#999'}">
                                     ${isLiked ? '❤️' : '🤍'} <span>${r.likes || 0}</span>
                                 </button>
-                                <button class="delete-review-btn" onclick="deleteReview(${r.id})" title="حذف (للمدير فقط)">🗑️</button>
+                                ${deleteBtnHTML}
                             </div>
                         </div>`;
                 }).join('');
@@ -636,12 +641,19 @@
 
         // --- نظام الحذف (للمدير) ---
         async function deleteReview(reviewId) {
-            const pwd = prompt('🔒 أدخل كلمة مرور المدير لحذف التقييم:');
-            if (pwd !== ADMIN_PASSWORD) { alert('❌ كلمة مرور خاطئة!'); return; }
+            // التأكد من أن المستخدم مدير قبل الحذف (حماية إضافية)
+            if (sessionStorage.getItem('isAdmin') !== 'true') {
+                alert('❌ غير مصرح لك بالحذف!');
+                return;
+            }
+            
             if (!confirm('هل أنت متأكد من حذف هذا التقييم؟')) return;
             
             const { error } = await supabaseClient.from('reviews').delete().eq('id', reviewId);
-            if (!error) { alert('✅ تم حذف التقييم'); await loadReviews(currentDetailsProduct.id); }
+            if (!error) { 
+                alert('✅ تم حذف التقييم'); 
+                await loadReviews(currentDetailsProduct.id); 
+            }
             else { alert('❌ خطأ: ' + error.message); }
         }
 
