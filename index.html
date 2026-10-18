@@ -16,7 +16,6 @@
         .header .logo { color: #d4af37; font-size: 1.4rem; font-weight: 900; display: flex; align-items: center; gap: 10px; }
         .header .logo-icon { background: linear-gradient(135deg, #d4af37, #f4d03f); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #0a0a0a; }
         
-        /* تعديل الشعار لإضافة اسم تاجر عاطف */
         .logo-text-container { display: flex; flex-direction: column; line-height: 1.2; }
         .logo-text-container .main-name { font-size: 1.3rem; font-weight: 900; }
         .logo-text-container .sub-name { font-size: 0.75rem; color: #a0a0a0; font-weight: 600; }
@@ -44,8 +43,8 @@
         .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; border: 1px solid #f0f0f0; cursor: pointer; }
         .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25); border-color: #d4af37; }
         .product-card .image-wrapper { position: relative; width: 100%; height: 220px; overflow: hidden; background: #f0f0f0; }
-        .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .product-card:hover img { transform: scale(1.1); }
+        .product-card img, .product-card video { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover img, .product-card:hover video { transform: scale(1.1); }
         .product-info { padding: 18px; }
         .product-info h3 { font-size: 1.05rem; font-weight: 700; color: #222; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .product-price { font-size: 1.3rem; font-weight: 900; color: #d4af37; margin-bottom: 12px; }
@@ -68,10 +67,14 @@
         .product-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 99999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
         .product-modal.active { display: flex; }
         .product-modal-content { background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 95vh; overflow-y: auto; position: relative; }
-        .product-modal-image { width: 100%; height: 300px; object-fit: cover; border-radius: 20px 20px 0 0; }
+        
+        #details-media-container { width: 100%; height: 300px; background: #000; }
+        #details-media-container img, #details-media-container video { width: 100%; height: 100%; object-fit: contain; }
+        
         .modal-thumbs { display: flex; gap: 8px; padding: 10px 25px; overflow-x: auto; }
-        .modal-thumbs img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
-        .modal-thumbs img.active { border-color: #d4af37; }
+        .modal-thumbs img, .modal-thumbs video { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; background: #000; }
+        .modal-thumbs .active-thumb { border-color: #d4af37; }
+        
         .product-modal-body { padding: 25px; }
         .product-modal-body h2 { font-size: 1.6rem; color: #0a0a0a; margin-bottom: 10px; }
         .product-modal-body .modal-price { font-size: 1.5rem; color: #d4af37; font-weight: 900; margin-bottom: 15px; }
@@ -116,7 +119,7 @@
         .cart-header button { background: transparent; border: none; color: #d4af37; font-size: 1.5rem; cursor: pointer; }
         .cart-items { flex: 1; overflow-y: auto; padding: 15px; }
         .cart-item { display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid #eee; align-items: center; }
-        .cart-item img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; }
+        .cart-item img, .cart-item video { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; background: #000; }
         .cart-item-info { flex: 1; }
         .cart-item-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
         .cart-item-info .price { color: #d4af37; font-weight: 700; font-size: 0.95rem; }
@@ -162,7 +165,7 @@
         .section-title-admin { font-size: 1.2rem; color: #d4af37; }
         .products-table-admin { background: #0f0f0f; border: 1px solid #333; border-radius: 15px; overflow: hidden; }
         .product-row-admin { display: grid; grid-template-columns: 55px 1fr 90px 100px 100px; gap: 12px; padding: 12px 15px; align-items: center; border-bottom: 1px solid #222; }
-        .product-row-admin img { width: 55px; height: 55px; border-radius: 10px; object-fit: cover; background: #222; }
+        .product-row-admin img, .product-row-admin video { width: 55px; height: 55px; border-radius: 10px; object-fit: cover; background: #222; }
         .product-row-admin .p-name { font-weight: 700; color: #f5f5f5; font-size: 0.9rem; }
         .product-row-admin .p-desc { color: #888; font-size: 0.75rem; margin-top: 3px; }
         .product-row-admin .p-price { color: #d4af37; font-weight: 900; }
@@ -188,7 +191,7 @@
 
         .images-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
         .images-preview .img-wrapper { position: relative; }
-        .images-preview img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 2px solid #d4af37; }
+        .images-preview img, .images-preview video { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 2px solid #d4af37; background: #000; }
         .images-preview .remove-img { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border: none; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
 
         @media (max-width: 600px) {
@@ -197,7 +200,7 @@
             .product-row-admin { grid-template-columns: 45px 1fr; gap: 8px; }
             .visit-row { grid-template-columns: 50px 1fr; font-size: 0.8rem; }
             .visit-row .visit-time { grid-column: 1 / -1; }
-            .product-modal-image { height: 250px; }
+            #details-media-container { height: 250px; }
         }
     </style>
 </head>
@@ -322,10 +325,14 @@
             <label>اسم المنتج:</label><input type="text" id="p-name" placeholder="مثال: حقيبة يد">
             <label>السعر (د.م):</label><input type="number" id="p-price" placeholder="مثال: 250">
             <label>الوصف:</label><textarea id="p-desc" placeholder="وصف مختصر"></textarea>
-            <label>صور المنتج (يمكن اختيار عدة صور):</label>
-            <input type="file" id="p-images-file" accept="image/*" multiple onchange="uploadProductImages(event)" style="padding: 10px; background: #0a0a0a; border: 1px solid #333; border-radius: 10px; color: white; font-family: 'Cairo', sans-serif; width: 100%; margin-bottom: 15px;">
+            
+            <!-- تعديل حقل الرفع ليقبل الفيديوهات -->
+            <label>صور وفيديوهات المنتج (يمكن اختيار أكثر من ملف):</label>
+            <input type="file" id="p-images-file" accept="image/*,video/*" multiple onchange="uploadProductImages(event)" style="padding: 10px; background: #0a0a0a; border: 1px solid #333; border-radius: 10px; color: white; font-family: 'Cairo', sans-serif; width: 100%; margin-bottom: 15px;">
+            
             <div id="images-preview" class="images-preview"></div>
             <input type="hidden" id="p-image">
+            
             <label>الفئة:</label>
             <select id="p-category">
                 <option value="عام">عام</option><option value="ملابس">ملابس</option><option value="أحذية">أحذية</option><option value="إكسسوارات">إكسسوارات</option><option value="منزل">منزل</option><option value="جمال">جمال</option>
@@ -345,7 +352,10 @@
     <div class="product-modal" id="product-details-modal">
         <div class="product-modal-content">
             <button class="modal-close" onclick="closeProductDetails()">← رجوع</button>
-            <img id="details-image" class="product-modal-image" src="" alt="">
+            
+            <!-- حاوية الوسائط (صورة أو فيديو) -->
+            <div id="details-media-container"></div>
+            
             <div class="modal-thumbs" id="details-thumbs"></div>
             <div class="product-modal-body">
                 <h2 id="details-name"></h2>
@@ -389,10 +399,15 @@
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         let allProducts = [];
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        let currentImages = [];
+        let currentImages = []; // هنا سيتم تخزين روابط الصور والفيديوهات معاً
         let currentDetailsProduct = null;
         let selectedRating = 0;
         let currentProductReviews = [];
+
+        // دالة مساعدة لمعرفة ما إذا كان الرابط فيديو أم صورة
+        function isVideo(url) {
+            return url && url.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i);
+        }
 
         // ========== ROUTING ==========
         function handleRouting() {
@@ -464,14 +479,21 @@
         function renderProductsTable() {
             const container = document.getElementById('products-table-admin');
             if (allProducts.length === 0) { container.innerHTML = '<div style="text-align:center;padding:30px;color:#888;">📭 لا توجد منتجات</div>'; return; }
-            container.innerHTML = allProducts.map(p => `
+            container.innerHTML = allProducts.map(p => {
+                const mediaUrl = p.image_url || 'https://via.placeholder.com/55/333/d4af37?text=?';
+                const mediaHTML = isVideo(mediaUrl) 
+                    ? `<video src="${mediaUrl}" muted></video>` 
+                    : `<img src="${mediaUrl}" alt="${p.name}">`;
+
+                return `
                 <div class="product-row-admin">
-                    <img src="${p.image_url || 'https://via.placeholder.com/55/333/d4af37?text=?'}" alt="${p.name}">
+                    ${mediaHTML}
                     <div><div class="p-name">${p.name}</div><div class="p-desc">${(p.description || '').substring(0, 40)}</div></div>
                     <div class="p-price">${p.price} د.م</div>
                     <div class="p-category">${p.category || 'عام'}</div>
                     <div class="row-actions"><button class="edit-btn" onclick="editProduct(${p.id})">✏️</button><button class="delete-btn" onclick="deleteProduct(${p.id})">🗑️</button></div>
-                </div>`).join('');
+                </div>`;
+            }).join('');
         }
 
         function openAddProduct() {
@@ -498,7 +520,12 @@
         function renderImagesPreview() {
             const container = document.getElementById('images-preview');
             if (currentImages.length === 0) { container.innerHTML = ''; return; }
-            container.innerHTML = currentImages.map((img, i) => `<div class="img-wrapper"><img src="${img}"><button class="remove-img" onclick="removeImage(${i})">×</button></div>`).join('');
+            container.innerHTML = currentImages.map((url, i) => {
+                const mediaHTML = isVideo(url) 
+                    ? `<video src="${url}" muted></video>` 
+                    : `<img src="${url}">`;
+                return `<div class="img-wrapper">${mediaHTML}<button class="remove-img" onclick="removeImage(${i})">×</button></div>`;
+            }).join('');
         }
 
         function removeImage(index) {
@@ -508,11 +535,11 @@
 
         async function uploadProductImages(event) {
             const files = Array.from(event.target.files); if (files.length === 0) return;
-            document.getElementById('images-preview').innerHTML += '<p style="color:#d4af37;font-size:0.85rem;">⏳ جاري رفع الصور...</p>';
+            document.getElementById('images-preview').innerHTML += '<p style="color:#d4af37;font-size:0.85rem;">⏳ جاري رفع الملفات...</p>';
             for (const file of files) {
                 const fileName = `product-${Date.now()}-${Math.random().toString(36).substring(7)}-${file.name}`;
                 const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file);
-                if (error) { alert('❌ خطأ: ' + error.message); continue; }
+                if (error) { alert('❌ خطأ في رفع الملف: ' + error.message); continue; }
                 const { data: urlData } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
                 if (urlData.publicUrl) currentImages.push(urlData.publicUrl);
             }
@@ -570,9 +597,14 @@
                 const allImages = [p.image_url, ...(Array.isArray(p.images) ? p.images : [])].filter((v, i, arr) => v && arr.indexOf(v) === i);
                 const mainImage = allImages[0] || 'https://via.placeholder.com/300x220/e0e0e0/999999?text=No+Image';
 
+                // عرض فيديو أو صورة في البطاقة
+                const mediaHTML = isVideo(mainImage) 
+                    ? `<video src="${mainImage}" autoplay loop muted playsinline></video>` 
+                    : `<img src="${mainImage}" alt="${p.name}">`;
+
                 return `
                 <div class="product-card" onclick="openProductDetails(${p.id})">
-                    <div class="image-wrapper"><img src="${mainImage}" alt="${p.name}"><span class="status-badge ${badgeClass}">${badge}</span></div>
+                    <div class="image-wrapper">${mediaHTML}<span class="status-badge ${badgeClass}">${badge}</span></div>
                     <div class="product-info">
                         <h3>${p.name}</h3>
                         <div class="product-price">${p.price} د.م</div>
@@ -593,13 +625,31 @@
             document.getElementById('review-name').value = ''; document.getElementById('review-comment').value = '';
             
             const allImages = [p.image_url, ...(Array.isArray(p.images) ? p.images : [])].filter((v, i, arr) => v && arr.indexOf(v) === i);
-            document.getElementById('details-image').src = allImages[0] || 'https://via.placeholder.com/300x220/e0e0e0/999999?text=No+Image';
+            const mainMedia = allImages[0] || 'https://via.placeholder.com/300x220/e0e0e0/999999?text=No+Image';
+            
+            // تحديث حاوية الوسائط الرئيسية
+            const mediaContainer = document.getElementById('details-media-container');
+            mediaContainer.innerHTML = isVideo(mainMedia)
+                ? `<video src="${mainMedia}" controls autoplay loop muted playsinline></video>`
+                : `<img src="${mainMedia}" alt="${p.name}">`;
+
             document.getElementById('details-name').textContent = p.name;
             document.getElementById('details-price').textContent = p.price + ' د.م';
             document.getElementById('details-desc').textContent = p.description || 'لا يوجد وصف';
             
+            // تحديث الصور المصغرة (Thumbnails)
             const thumbs = document.getElementById('details-thumbs');
-            if (allImages.length > 1) { thumbs.style.display = 'flex'; thumbs.innerHTML = allImages.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" onclick="changeDetailsImage(this, '${img}')">`).join(''); } else { thumbs.style.display = 'none'; }
+            if (allImages.length > 1) { 
+                thumbs.style.display = 'flex'; 
+                thumbs.innerHTML = allImages.map((url, i) => {
+                    const thumbHTML = isVideo(url) 
+                        ? `<video src="${url}" muted class="${i === 0 ? 'active-thumb' : ''}" onclick="changeDetailsMedia(this, '${url}', true)"></video>` 
+                        : `<img src="${url}" class="${i === 0 ? 'active-thumb' : ''}" onclick="changeDetailsMedia(this, '${url}', false)">`;
+                    return thumbHTML;
+                }).join(''); 
+            } else { 
+                thumbs.style.display = 'none'; 
+            }
 
             const isOut = (p.status || 'متوفر') === 'غير متوفر';
             document.getElementById('details-buttons').innerHTML = `
@@ -609,24 +659,23 @@
             `;
 
             document.getElementById('product-details-modal').classList.add('active');
-            
-            // إضافة حالة للتاريخ (History) ليعمل زر الرجوع في الهاتف
             history.pushState({ modal: 'product' }, '');
-
             await loadReviews(p.id);
         }
 
-        function changeDetailsImage(thumb, url) {
-            document.getElementById('details-image').src = url;
-            document.querySelectorAll('#details-thumbs img').forEach(t => t.classList.remove('active'));
-            thumb.classList.add('active');
+        function changeDetailsMedia(thumb, url, video) {
+            const mediaContainer = document.getElementById('details-media-container');
+            mediaContainer.innerHTML = video
+                ? `<video src="${url}" controls autoplay loop muted playsinline></video>`
+                : `<img src="${url}">`;
+                
+            document.querySelectorAll('#details-thumbs img, #details-thumbs video').forEach(t => t.classList.remove('active-thumb'));
+            thumb.classList.add('active-thumb');
         }
 
         function closeProductDetails() { 
             document.getElementById('product-details-modal').classList.remove('active'); 
             currentDetailsProduct = null; 
-            
-            // إذا كان المستخدم قد فتح النافذة، نقوم بإلغاء الخطوة الأخيرة في المتصفح
             if (history.state && history.state.modal === 'product') {
                 history.back();
             }
@@ -663,11 +712,9 @@
             } catch (e) { container.innerHTML = '<p style="color:#ef4444;">حدث خطأ</p>'; }
         }
 
-        // --- نظام الإعجاب ---
         async function likeReview(reviewId, currentLikes) {
             let likedReviews = JSON.parse(localStorage.getItem('likedReviews') || '[]');
             if (likedReviews.includes(reviewId)) { alert('لقد أعجبت بهذا التعليق مسبقاً!'); return; }
-
             const { error } = await supabaseClient.from('reviews').update({ likes: currentLikes + 1 }).eq('id', reviewId);
             if (!error) {
                 likedReviews.push(reviewId);
@@ -676,16 +723,9 @@
             }
         }
 
-        // --- نجوم التقييم ---
         function setRating(num) { selectedRating = num; resetStars(); }
-        function hoverStars(num) {
-            const stars = document.querySelectorAll('#star-input span');
-            stars.forEach((s, i) => s.style.color = i < num ? '#f59e0b' : '#ddd');
-        }
-        function resetStars() {
-            const stars = document.querySelectorAll('#star-input span');
-            stars.forEach((s, i) => s.style.color = i < selectedRating ? '#f59e0b' : '#ddd');
-        }
+        function hoverStars(num) { document.querySelectorAll('#star-input span').forEach((s, i) => s.style.color = i < num ? '#f59e0b' : '#ddd'); }
+        function resetStars() { document.querySelectorAll('#star-input span').forEach((s, i) => s.style.color = i < selectedRating ? '#f59e0b' : '#ddd'); }
 
         async function submitReview() {
             if (!currentDetailsProduct) return;
@@ -701,72 +741,41 @@
             const { error } = await supabaseClient.from('reviews').insert([{ product_id: currentDetailsProduct.id, reviewer_name: name, comment: comment, rating: selectedRating }]);
             
             if (!error) {
-                document.getElementById('review-name').value = ''; 
-                document.getElementById('review-comment').value = '';
-                selectedRating = 0; resetStars(); 
-                await loadReviews(currentDetailsProduct.id);
-                
-                btn.textContent = '✅ شكراً لك على تعليقك!';
-                btn.style.background = '#10b981'; 
-                btn.style.color = 'white';
-                btn.style.border = 'none';
-                
-                setTimeout(() => {
-                    btn.textContent = 'إرسال التقييم';
-                    btn.style.background = '#0a0a0a';
-                    btn.style.color = '#d4af37';
-                    btn.disabled = false;
-                }, 3000);
-
-            } else { 
-                alert('❌ حدث خطأ: ' + error.message); 
-                btn.textContent = 'إرسال التقييم'; btn.disabled = false;
-            }
+                document.getElementById('review-name').value = ''; document.getElementById('review-comment').value = '';
+                selectedRating = 0; resetStars(); await loadReviews(currentDetailsProduct.id);
+                btn.textContent = '✅ شكراً لك على تعليقك!'; btn.style.background = '#10b981'; btn.style.color = 'white'; btn.style.border = 'none';
+                setTimeout(() => { btn.textContent = 'إرسال التقييم'; btn.style.background = '#0a0a0a'; btn.style.color = '#d4af37'; btn.disabled = false; }, 3000);
+            } else { alert('❌ حدث خطأ: ' + error.message); btn.textContent = 'إرسال التقييم'; btn.disabled = false; }
         }
 
-        // ========== ADMIN REVIEWS MANAGEMENT ==========
         async function loadAdminReviews() {
             const container = document.getElementById('admin-reviews-table');
             try {
                 const { data, error } = await supabaseClient.from('reviews').select('*, products(name)').order('created_at', { ascending: false });
                 if (error) throw error;
-                if (!data || data.length === 0) {
-                    container.innerHTML = '<div style="text-align:center;padding:30px;color:#888;">📭 لا توجد تعليقات</div>';
-                    return;
-                }
+                if (!data || data.length === 0) { container.innerHTML = '<div style="text-align:center;padding:30px;color:#888;">📭 لا توجد تعليقات</div>'; return; }
                 container.innerHTML = data.map(r => {
                     const stars = '★'.repeat(r.rating) + '☆'.repeat(10 - r.rating);
                     const date = new Date(r.created_at).toLocaleDateString('ar-MA');
                     const productName = r.products ? r.products.name : 'منتج محذوف';
                     return `
                         <div class="admin-review-row">
-                            <div class="admin-review-header">
-                                <span class="admin-review-name">${r.reviewer_name}</span>
-                                <span class="review-stars">${stars} (${r.rating}/10)</span>
-                            </div>
+                            <div class="admin-review-header"><span class="admin-review-name">${r.reviewer_name}</span><span class="review-stars">${stars} (${r.rating}/10)</span></div>
                             <div class="admin-review-product">📦 المنتج: ${productName}</div>
                             <div class="admin-review-text">"${r.comment}"</div>
                             <div class="admin-review-footer">
                                 <span style="color:#94a3b8; font-size: 0.8rem;">📅 ${date}</span>
                                 <button class="btn-danger" style="padding: 5px 10px;" onclick="adminDeleteReview(${r.id})">🗑️ حذف</button>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 }).join('');
-            } catch (e) {
-                container.innerHTML = '<div style="text-align:center;padding:30px;color:#ef4444;">⚠️ حدث خطأ في تحميل التعليقات</div>';
-            }
+            } catch (e) { container.innerHTML = '<div style="text-align:center;padding:30px;color:#ef4444;">⚠️ حدث خطأ في تحميل التعليقات</div>'; }
         }
 
         async function adminDeleteReview(reviewId) {
             if (!confirm('هل أنت متأكد من حذف هذا التعليق نهائياً؟')) return;
             const { error } = await supabaseClient.from('reviews').delete().eq('id', reviewId);
-            if (!error) {
-                alert('✅ تم حذف التعليق');
-                await loadAdminReviews(); 
-            } else {
-                alert('❌ خطأ: ' + error.message);
-            }
+            if (!error) { alert('✅ تم حذف التعليق'); await loadAdminReviews(); } else { alert('❌ خطأ: ' + error.message); }
         }
 
         // ========== CART & ORDERING ==========
@@ -797,12 +806,19 @@
             const container = document.getElementById('cart-items');
             if (cart.length === 0) { container.innerHTML = '<p class="empty-cart">السلة فارغة 🛒</p>'; }
             else {
-                container.innerHTML = cart.map(item => `
+                container.innerHTML = cart.map(item => {
+                    // عرض فيديو أو صورة في السلة
+                    const mediaHTML = isVideo(item.image_url) 
+                        ? `<video src="${item.image_url}" muted></video>` 
+                        : `<img src="${item.image_url || 'https://via.placeholder.com/60'}">`;
+
+                    return `
                     <div class="cart-item">
-                        <img src="${item.image_url || 'https://via.placeholder.com/60'}">
+                        ${mediaHTML}
                         <div class="cart-item-info"><h4>${item.name} × ${item.qty}</h4><div class="price">${item.price * item.qty} د.م</div></div>
                         <button class="remove-btn" onclick="removeFromCart(${item.id})">🗑️</button>
-                    </div>`).join('');
+                    </div>`;
+                }).join('');
             }
             document.getElementById('cart-total').textContent = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
         }
@@ -836,7 +852,6 @@
             } catch (e) {}
         }
 
-        // ========== HISTORY API FOR BACK BUTTON ==========
         window.addEventListener('popstate', (e) => {
             const modal = document.getElementById('product-details-modal');
             if (modal && modal.classList.contains('active')) {
